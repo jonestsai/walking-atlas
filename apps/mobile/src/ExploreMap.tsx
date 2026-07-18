@@ -38,10 +38,24 @@ export function ExploreMap() {
       .catch(console.warn);
   }, [replaceUnlockedCells]);
 
+  const confirmWalkPermissions = async () => {
+    const foreground = await Location.getForegroundPermissionsAsync();
+    if (foreground.granted) return true;
+    if (!foreground.canAskAgain) throw new Error("Precise foreground location is required to start a Walk.");
+
+    return new Promise<boolean>((resolve) => {
+      Alert.alert("Unlock tiles as you walk", "Choose “Allow While Using App” in the next prompt.", [
+        { text: "Not now", style: "cancel", onPress: () => resolve(false) },
+        { text: "Continue", onPress: () => resolve(true) },
+      ]);
+    });
+  };
+
   const toggleWalk = async () => {
     try {
       if (walking) await end();
       else {
+        if (!await confirmWalkPermissions()) return;
         await start();
         void Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced })
           .then((location) => cameraRef.current?.easeTo({ center: [location.coords.longitude, location.coords.latitude], zoom: 16, duration: 500 }))
@@ -49,11 +63,14 @@ export function ExploreMap() {
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown error";
+      if (message.includes("setup cancelled")) return;
       if (message.includes("foreground") || message.includes("Background location")) {
-        const locationMessage = message.includes("foreground")
-          ? "Allow Precise Location in Walking Tracker’s Settings to start a Walk."
-          : "Change Location to Always in Walking Tracker’s Settings to keep an active Walk unlocking tiles while your screen is locked.";
-        Alert.alert("Location access", locationMessage, [
+        const foregroundIssue = message.includes("foreground");
+        const locationTitle = foregroundIssue ? "Turn on precise location" : "Track with phone locked";
+        const locationMessage = foregroundIssue
+          ? "In Settings, tap Location. Choose “Always”, then turn on “Precise Location”."
+          : "In Settings, tap Location, then choose “Always”.";
+        Alert.alert(locationTitle, locationMessage, [
           { text: "Not now", style: "cancel" },
           { text: "Settings", onPress: () => void Linking.openSettings() },
         ]);

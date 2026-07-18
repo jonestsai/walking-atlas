@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import * as Location from "expo-location";
 import { api } from "./api";
 import { activeWalk, clearActiveWalk, initialiseQueue, nextBatch, removeBatch, setActiveWalk } from "./locationQueue";
@@ -16,6 +17,13 @@ export async function startWalk(): Promise<string> {
 
   let background = await Location.getBackgroundPermissionsAsync();
   if (!background.granted) {
+    const continueToBackgroundPermission = await new Promise<boolean>((resolve) => {
+      Alert.alert("Track with phone locked", "Choose “Change to Always Allow” in the next prompt.", [
+        { text: "Not now", style: "cancel", onPress: () => resolve(false) },
+        { text: "Continue", onPress: () => resolve(true) },
+      ]);
+    });
+    if (!continueToBackgroundPermission) throw new Error("Location permission setup cancelled.");
     await Location.requestBackgroundPermissionsAsync();
     // iOS can dismiss the authorization sheet before Core Location exposes the
     // updated status to the app. It is normally available a fraction of a
@@ -31,7 +39,7 @@ export async function startWalk(): Promise<string> {
     status: background.status,
     canAskAgain: background.canAskAgain,
   });
-  if (!background.granted) throw new Error("Background location is required to continue an active Walk while the screen is locked.");
+  if (!background.granted) throw new Error("Background location is required to track a Walk while your phone is locked.");
 
   const session = await api.startTrackingSession("background_walk");
   setActiveWalk(session.id);
