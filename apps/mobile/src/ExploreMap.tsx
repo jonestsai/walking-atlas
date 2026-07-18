@@ -66,12 +66,12 @@ export function ExploreMap() {
 
   return (
     <View style={styles.container}>
-      <Map style={StyleSheet.absoluteFill} mapStyle={config.darkMapStyleUrl} logo={false} attribution onRegionDidChange={updateViewport}>
+      <Map style={StyleSheet.absoluteFill} mapStyle={config.mapStyleUrl} logo={false} attribution onRegionDidChange={updateViewport}>
         <Camera ref={cameraRef} initialViewState={{ center: [-123.1207, 49.2827], zoom: 15 }} />
         {walking ? <UserLocation animated accuracy /> : null}
         <GeoJSONSource id="explored-tiles" data={exploredTiles}>
-          <Layer id="explored-tile-fill" type="fill" paint={{ "fill-color": "#f8fafc", "fill-opacity": 0.38 }} />
-          <Layer id="explored-tile-lines" type="line" paint={{ "line-color": "#ffffff", "line-opacity": 0.7, "line-width": 0.8 }} />
+          <Layer id="explored-tile-fill" type="fill" paint={{ "fill-color": "#0d9488", "fill-opacity": 0.62 }} />
+          <Layer id="explored-tile-lines" type="line" paint={{ "line-color": "#ccfbf1", "line-opacity": 0.95, "line-width": 1.5 }} />
         </GeoJSONSource>
       </Map>
 
