@@ -12,7 +12,8 @@ type ProgressState = {
   sessions: RecentSession[];
 };
 
-const formatSessionDate = (value: string) => new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" }).format(new Date(value));
+const formatSessionDate = (value: string) => new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", year: "numeric" }).format(new Date(value));
+const formatSessionTime = (value: string) => new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" }).format(new Date(value));
 
 export default function ProgressScreen() {
   const [progress, setProgress] = useState<ProgressState | null>(null);
@@ -43,7 +44,7 @@ export default function ProgressScreen() {
           <Stat value={progress?.streak ?? 0} label="Day streak" />
         </View>
         <Text style={styles.section}>Recent</Text>
-        {progress?.sessions.length ? progress.sessions.map((session) => <View key={session.id} style={styles.session}><View><Text style={styles.sessionTitle}>{session.tracking_mode === "background_walk" ? "Walk" : "Explore"}</Text><Text style={styles.sessionDate}>{formatSessionDate(session.started_at)}</Text></View><Text style={styles.sessionTiles}>{session.awarded_cell_count}</Text></View>) : <View style={styles.empty}><Text style={styles.emptyTitle}>No tiles yet</Text></View>}
+        {progress?.sessions.length ? progress.sessions.map((session) => <View key={session.id} style={styles.session}><View><Text style={styles.sessionTitle}>{session.tracking_mode === "background_walk" ? "Walk" : "Explore"}</Text><Text style={styles.sessionDate}>{formatSessionDate(session.started_at)}</Text><Text style={styles.sessionTime}>{formatSessionTime(session.started_at)} – {session.ended_at ? formatSessionTime(session.ended_at) : "In progress"}</Text></View><Text style={styles.sessionTiles}>{session.awarded_cell_count}</Text></View>) : <View style={styles.empty}><Text style={styles.emptyTitle}>No tiles yet</Text></View>}
       </ScrollView>
     </SafeAreaView>
   );
@@ -63,9 +64,10 @@ const styles = StyleSheet.create({
   statValue: { color: colors.text, fontSize: 28, fontWeight: "800" },
   statLabel: { color: colors.muted, fontSize: 13, marginTop: 3 },
   section: { color: colors.muted, fontSize: 12, fontWeight: "800", letterSpacing: 0.8, textTransform: "uppercase", marginTop: 6 },
-  session: { minHeight: 68, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16, borderRadius: 14, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
+  session: { minHeight: 86, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16, borderRadius: 14, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
   sessionTitle: { color: colors.text, fontSize: 16, fontWeight: "700" },
   sessionDate: { color: colors.muted, fontSize: 13, marginTop: 2 },
+  sessionTime: { color: colors.muted, fontSize: 13, marginTop: 2 },
   sessionTiles: { color: colors.primary, fontSize: 20, fontWeight: "800" },
   empty: { padding: 20, borderRadius: 16, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
   emptyTitle: { color: colors.muted, fontSize: 16 },
