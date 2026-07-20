@@ -6,7 +6,7 @@
     "scheme": "walkingatlas",
     "version": "0.1.0",
     "runtimeVersion": "0.1.0",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.walkingatlas.app",
