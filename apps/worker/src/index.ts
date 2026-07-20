@@ -139,7 +139,6 @@ async function handle(request: Request, env: Env): Promise<Response> {
       method: "DELETE",
       headers: {
         apikey: env.SUPABASE_SECRET_KEY,
-        authorization: `Bearer ${env.SUPABASE_SECRET_KEY}`,
       },
     });
     if (!response.ok) throw new Error(await response.text());
