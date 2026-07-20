@@ -44,7 +44,7 @@ export function ExploreMap() {
     if (!foreground.canAskAgain) throw new Error("Precise foreground location is required to start a Walk.");
 
     return new Promise<boolean>((resolve) => {
-      Alert.alert("Location during an active Walk", "To start a Walk, choose “Allow While Using App” in the next iOS prompt. WalkingAtlas uses your precise location only while a Walk is active and sends it to WalkingAtlas to validate tile unlocks.", [
+      Alert.alert("Location during an active Walk", "Choose “Allow While Using App” to unlock tiles during your Walk.", [
         { text: "Not now", style: "cancel", onPress: () => resolve(false) },
         { text: "Continue", onPress: () => resolve(true) },
       ]);
