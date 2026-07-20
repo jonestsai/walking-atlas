@@ -26,8 +26,8 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="walking-tracker"/>
-        <data android:scheme="exp+walking-tracker"/>
+        <data android:scheme="walkingatlas"/>
+        <data android:scheme="exp+walkingatlas"/>
       </intent-filter>
     </activity>
   </application>

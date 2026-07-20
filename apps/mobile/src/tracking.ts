@@ -58,7 +58,7 @@ export async function startWalk(): Promise<string> {
     showsBackgroundLocationIndicator: true,
     foregroundService: {
       notificationTitle: "Walk tracking active",
-      notificationBody: "Walking Tracker is unlocking explored cells.",
+      notificationBody: "WalkingAtlas is unlocking explored cells.",
     },
   });
   return session.id;

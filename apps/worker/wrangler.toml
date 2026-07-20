@@ -1,4 +1,4 @@
-name = "walking-tracker-api"
+name = "walkingatlas-api"
 main = "src/index.ts"
 compatibility_date = "2026-07-16"
 

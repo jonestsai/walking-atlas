@@ -1,4 +1,4 @@
-package com.example.walkingtracker
+package com.walkingatlas.app
 
 import android.app.Application
 import android.content.res.Configuration

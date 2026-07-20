@@ -12,7 +12,7 @@ index fc4608a..05ea578 100644
      :name => 'Generate app.config for prebuilt Constants.manifest',
 -    :script => "bash -l -c \"#{env_vars}$PODS_TARGET_SRCROOT/../scripts/get-app-config-ios.sh\"",
 +    # Quote the expanded script path for the nested shell, so projects in directories
-+    # with spaces (for example, \"Walking Tracker\") build correctly.
++    # with spaces (for example, \"WalkingAtlas\") build correctly.
 +    :script => "bash -l -c \"\\\"#{env_vars}$PODS_TARGET_SRCROOT/../scripts/get-app-config-ios.sh\\\"\"",
      :execution_position => :before_compile
    }

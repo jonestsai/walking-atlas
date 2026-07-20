@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>Walking Tracker</string>
+    <string>WalkingAtlas</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,14 +27,14 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>walking-tracker</string>
-          <string>com.example.walkingtracker</string>
+          <string>walkingatlas</string>
+          <string>com.walkingatlas.app</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>exp+walking-tracker</string>
+          <string>exp+walkingatlas</string>
         </array>
       </dict>
     </array>
@@ -52,11 +52,11 @@
       <true/>
     </dict>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Walking Tracker keeps unlocking tiles during an active Walk when your phone is locked.</string>
+    <string>WalkingAtlas keeps unlocking tiles during an active Walk when your phone is locked.</string>
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>Walking Tracker keeps unlocking tiles during an active Walk when your phone is locked.</string>
+    <string>WalkingAtlas keeps unlocking tiles during an active Walk when your phone is locked.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Walking Tracker uses your precise location to unlock the tiles you visit while you walk.</string>
+    <string>WalkingAtlas uses your precise location to unlock the tiles you visit while you walk.</string>
     <key>NSUserActivityTypes</key>
     <array>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>

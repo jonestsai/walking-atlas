@@ -1,13 +1,13 @@
 {
-  "name": "walking-tracker",
+  "name": "walkingatlas",
   "private": true,
   "workspaces": [
     "apps/*"
   ],
   "scripts": {
     "postinstall": "patch-package",
-    "dev:mobile": "npm --workspace @walking-tracker/mobile run start",
-    "dev:worker": "npm --workspace @walking-tracker/worker run dev",
+    "dev:mobile": "npm --workspace @walkingatlas/mobile run start",
+    "dev:worker": "npm --workspace @walkingatlas/worker run dev",
     "typecheck": "npm run typecheck --workspaces"
   },
   "dependencies": {

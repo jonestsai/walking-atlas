@@ -1,7 +1,7 @@
 import * as SQLite from "expo-sqlite";
 import type { FixPayload } from "./api";
 
-const database = SQLite.openDatabaseSync("walking-tracker.db");
+const database = SQLite.openDatabaseSync("walkingatlas.db");
 
 export function initialiseQueue(): void {
   database.execSync(`

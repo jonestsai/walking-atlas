@@ -8,7 +8,7 @@ const quotedScript =
 
 /**
  * React Native's default Xcode phase executes a command-substitution result
- * unquoted. Quote it so a repository path such as "Walking Tracker" works.
+ * unquoted. Quote it so a repository path such as "WalkingAtlas" works.
  */
 module.exports = function withQuotedReactNativeBundleScript(config) {
   return withXcodeProject(config, (modConfig) => {

@@ -1,8 +1,8 @@
-# Walking Tracker
+# WalkingAtlas
 
 > Turn every walk into an adventure: unlock map tiles as you discover the world on foot.
 
-Walking Tracker is an iOS walking exploration app. Start a walk, unlock precise H3 hexagonal tiles as you move, then see your progress on a personal map and by city. It is designed around exploration rather than routes, pace, or calories.
+WalkingAtlas is an iOS walking exploration app. Start a walk, unlock precise H3 hexagonal tiles as you move, then see your progress on a personal map and by city. It is designed around exploration rather than routes, pace, or calories.
 
 ## What it does
 
@@ -89,7 +89,7 @@ Walking Tracker is an iOS walking exploration app. Start a walk, unlock precise 
 8. Build and install the iOS development app:
 
    ```bash
-   npm --workspace @walking-tracker/mobile run ios
+   npm --workspace @walkingatlas/mobile run ios
    ```
 
 ## Testing
@@ -105,7 +105,7 @@ npm run typecheck
 Run the Worker test suite:
 
 ```bash
-npm --workspace @walking-tracker/worker test
+npm --workspace @walkingatlas/worker test
 ```
 
 The tests cover H3 GeoJSON coordinate serialization, the city roster, GPS quality requirements, and walking-speed validation.
@@ -135,7 +135,7 @@ No seed user data is required. Each install begins with an anonymous account and
 
 Codex with GPT-5.6 Terra was an active partner from product planning through implementation and verification. I used Plan Mode to explore alternatives, make explicit tradeoffs, and turn those decisions into the app's architecture.
 
-| Workflow | How Codex and GPT-5.6 Terra contributed | Result in Walking Tracker |
+| Workflow | How Codex and GPT-5.6 Terra contributed | Result in WalkingAtlas |
 | --- | --- | --- |
 | Tile design | Evaluated tile size against GPS drift, walking progress, and the ability to change the presentation later. | H3 resolution 12, with cells roughly 20 metres across. The H3 hierarchy preserves the option to aggregate existing progress into larger tiles later. |
 | Fair-play rules | Worked through GPS quality requirements and how to prevent a vehicle trip from being mistaken for a walk. | The Worker accepts only precise, recent, accurate fixes and pauses awarding above 15 km/h. It requires a new valid pair of fixes after a fast segment before unlocking resumes. |
