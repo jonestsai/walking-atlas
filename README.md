@@ -94,6 +94,19 @@ WalkingAtlas is an iOS walking exploration app. Start a walk, unlock precise H3 
 
 ## Testing
 
+### TestFlight (recommended)
+
+The easiest way to test WalkingAtlas is through TestFlight on an iPhone:
+
+1. Open the [WalkingAtlas TestFlight invite](https://testflight.apple.com/join/43ppa7kT) on your iPhone.
+2. Install Apple's **TestFlight** app if prompted, then accept the invite and install **WalkingAtlas**.
+3. Open WalkingAtlas and allow **Precise Location** and **Always Allow** location access when prompted. These permissions are required for background walk tracking.
+4. From the **Explore** tab, select **Start Walk**, walk outside for several minutes, and confirm that green hexagons appear and the in-walk tile count increases.
+5. End the walk, then open **Progress** to confirm the session and tile counts were recorded.
+
+> [!NOTE]
+> WalkingAtlas is currently available for iPhone through TestFlight. You do not need to set up the backend or build the app from source to evaluate it.
+
 ### Automated checks
 
 Run type checks across both workspaces:
@@ -110,7 +123,7 @@ npm --workspace @walkingatlas/worker test
 
 The tests cover H3 GeoJSON coordinate serialization, the city roster, GPS quality requirements, and walking-speed validation.
 
-### Manual app test
+### Manual development-build test
 
 1. Use the iOS development build on a physical iPhone.
 2. Grant **Precise Location** and **Always Allow** location access when prompted.
